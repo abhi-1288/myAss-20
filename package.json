@@ -5,7 +5,9 @@
     "dev": "vite",
     "build": "vite build",
     "homepage": "https://abhi-1288.github.io/",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@types/react": "^17.0.13",
