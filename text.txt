@@ -1,0 +1,27 @@
+npm i 
+npm run dev 
+npm install react-router-dom@6
+npm install axios
+npm install react-icons
+
+git commands {
+    setting up a programme folder: git init
+    add single file: git add `file-name`
+    add all folder: git add . 
+    checking status that all upload: git status 
+    pushing to github: git push -u origin main 
+
+    react publish from github to netlify: npm run build
+}
+
+
+
+change =>
+index.html 
+DummyData.js
+created public folder & _redirects page after:: npm run build
+install logo and not found images
+Err404.jsx
+Nav.jsx 
+Footer.jsx 
+{npm run build}

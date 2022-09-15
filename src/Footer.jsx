@@ -10,7 +10,7 @@ function Footer() {
     <div className="flex md:flex-row flex-col md:justify-center ">
 
       <div className="m-6">
-          <img src="https://cdn.discordapp.com/attachments/998621481934270566/1015538353275420732/weSHOP-removebg-preview.png" className="md:w-42 w-36 mx-auto" />
+          <img src="/imgs/weSHOP-removebg-preview.png" className="md:w-42 w-36 mx-auto" />
         <h2 className="font-Caveat text-red-400 text-4xl italic text-center">weShop Store </h2>
         <div className="flex space-x-4 justify-center mt-4">
           <img className="hover:bg-red-400 hover:rounded-lg" src="https://img.icons8.com/ios-filled/28/FFFFFF/instagram-new.png"/>
