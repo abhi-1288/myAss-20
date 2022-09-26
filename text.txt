@@ -25,10 +25,10 @@ cartlist.jsx
 cartlistpage.jsx 
 nav.jsx 
 public folder
-signup page ()
-forgotpassword page ()
+signup page 
+forgotpassword page 
 ProductListPage.jsx
-login page  ()
+login page  
 login page copy 
 formik installation "npm install formik"
 yup installation "npm install yup"
