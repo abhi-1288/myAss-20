@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import CartList from "./CartList";
 import { getProductData } from "./api";
-import Loading from "./Loading"
 
     const CartListpage = () => {
 
