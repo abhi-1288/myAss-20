@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import CartList from "./CartList";
 import { getProductData } from "./api";
 
-    const CartListpage = () => {
+    function CartListpage  ()  {
 
         const [productInfo, setProductInfo] = useState([])
       
