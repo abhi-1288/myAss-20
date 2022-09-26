@@ -20,7 +20,6 @@ import { getProductData } from "./api";
           },
           []
         );
-    
 
     return(
         <div >
