@@ -22,8 +22,8 @@ function ProdDetail({onCart}){
   
   const pr = getProductData(id)
 
-  pr.then(function(product){
-    setProduct(product.data)
+  pr.then(function(response){
+    setProduct(response)
     setLoading(false)
 
   }).catch(function(){
