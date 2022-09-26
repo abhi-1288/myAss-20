@@ -1,23 +1,15 @@
 import React from "react";
 import CartRow from "./CartRow";
 
-function CartList({item}){
-
-    
+function CartList({product}){
 
     return(
         <>
-        <h2 className="text-red-400 font-bold text-2xl mx-2 ">SHOPPING CART</h2>
+        <h2 className="text-red-400 text-5xl mx-2 font-RalewayDot">my CART</h2>
         <div className="flex">
             <div className="m-2 rounded-lg border-2 md:w-11/12 w-auto border-red-400 flex flex-col p-2">
 
-                {item.map(function(props){
-                    return(
-                    <CartRow {...props}
-                    key={props.title}
-                    />
-                    )
-                })}
+            {product.map((product) => <CartRow {...product} />)}
 
             </div>
             <div className="m-2 rounded-lg border-2 border-red-400 flex flex-col md:w-auto w-36 p-2 h-min ">

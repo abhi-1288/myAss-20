@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link, useParams} from 'react-router-dom'
 import { IoArrowBackCircleOutline  } from "react-icons/io5";
+import { TiTick } from "react-icons/ti";
 import { FcPrevious, FcNext } from "react-icons/fc";
 import { useEffect, useState } from 'react';
 import { getProductData } from './api';
@@ -32,6 +33,7 @@ function ProdDetail({onCart}){
 
 function handleInputInitial() {
   setCount(1);
+  setLoading(true)
 }
 
   function handleValue(event){
@@ -40,6 +42,7 @@ function handleInputInitial() {
 
   function onButtonClick(){
     onCart(id, count)
+
   }
 
 

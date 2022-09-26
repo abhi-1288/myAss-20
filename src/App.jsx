@@ -5,15 +5,20 @@ import Footer from './Footer';
 import ProductListPage from './ProductListPage';
 import ProdDetail from './ProdDetail'
 import Err404 from './Err404';
-import CartListpage from './CartListPage';
+import CartListpage from './CartListpage';
+import { getProductList } from './api'
+import SignUp from './SignUp';
+import LogIn from './LogIn';
+import ForgotPswd from './ForgotPswd';
 
 
 function App() {
+  
+
   const savedDataString = localStorage.getItem("my-cart") || "{}"
   const savedData = JSON.parse(savedDataString)
   const [cart, setCart] = useState(savedData)
 
-  
   function handleCart(productId, count){
     const oldCount = cart[productId] || 0
 
@@ -36,9 +41,11 @@ function App() {
         <Routes>
           <Route path="/" element={<ProductListPage />} />
           <Route path="/products/:id/" element={<ProdDetail onCart={handleCart}/>} />
-          <Route path='/Cart' element={ <CartListpage /> }/>
           <Route path="*" element={<Err404 />} />
-          
+          <Route path="/Cart" element={<CartListpage/>} />
+          <Route path="log-In" element={<LogIn/>} />
+          <Route path="sign-Up" element={<SignUp/>} />
+          <Route path="forgotpswd" element={<ForgotPswd/>} />
         </Routes>
       </div>
       <Footer />

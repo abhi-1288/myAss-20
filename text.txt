@@ -17,11 +17,18 @@ git commands {
 
 
 change =>
-index.html 
-DummyData.js
-created public folder & _redirects page after:: npm run build
-install logo and not found images
-Err404.jsx
-Nav.jsx 
-Footer.jsx 
-{npm run build}
+App.jsx
+api.js
+prodDetail.jsx 
+cartrow.jsx 
+cartlist.jsx 
+cartlistpage.jsx 
+nav.jsx 
+public folder
+signup page ()
+forgotpassword page ()
+ProductListPage.jsx
+login page  ()
+login page copy 
+formik installation "npm install formik"
+yup installation "npm install yup"

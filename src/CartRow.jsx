@@ -1,22 +1,31 @@
 import React, {useState, useEffect} from "react";
-// import { getProductData } from "./api";
+import {FaTimes} from "react-icons/fa"
 import { Link } from "react-router-dom";
 
-function CartRow({thumbnail, title, price, id}){
+function CartRow({thumbnail, title, price, id, quantity}){
 
-    const [subtot, newSubtot] = useState(price)    
-    const [val, iniVal] = useState(1)
-
-    function newValue(event){
-        iniVal(+event.target.value)
-        console.log("the value is",subtot)
-       newSubtot(iniVal * price)
+    const [subTot, setSubTot] = useState(1)
+    function prodDelete(){
+        setSubTot(0)
     }
+
+    function newValue (event){
+        setSubTot(+event.target.value)
+    }
+
+    if(subTot == 0){
+        return <div></div>
+    }
+    
     return(
         <div>
-            <div className="">
+            <div>
                 
                 <div className="flex md:flex-row md:w-auto w-44 flex-col justify-between items-center">
+                    <div onClick={prodDelete}>
+                        <FaTimes />
+                    </div>
+
                     <div className="w-32 h-32 ">
                         <img src={thumbnail} className="w-full h-full mx-2" />
                     </div>
@@ -24,8 +33,8 @@ function CartRow({thumbnail, title, price, id}){
                         <h3 className="text-black font-mono text-lg">{title}</h3>
                         <h5  className="text-orange-600 font-sans text-md mb-2">₹ {price}</h5>
                     </div>
-                    <input type="number" onChange={newValue}  value={val} className="border-2 border-orange-600 rounded text-center w-8" />
-                    <h4>{subtot}</h4>
+                    <input id="val" type="number" onChange={newValue}  value={subTot} className="border-2 border-orange-600 rounded text-center w-8" />
+                    <h4>{subTot * price}</h4>
                     <div className="grid items-end">
                         <Link className="bg-sky-500 p-2 font-RalewayDot rounded-md w-fit h-fit hover:bg-rose-300" to={"/products/" + id} >View</Link>
                     </div>

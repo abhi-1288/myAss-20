@@ -14,11 +14,9 @@ function ProductListPage() {
   useEffect (function(){
     const xyz  = getProductList()
 
-    xyz.then(function(response){
-      const rdp = response.data.products
-      setProductList(rdp)
+    xyz.then(function(response){ 
+      setProductList(response.data.products)
       setLoading(false)
-      // dataFromAPI.push(...rdp)
     }) 
   }, [])
 
@@ -70,9 +68,9 @@ if(loading){
   return (
     <div className="">
 
-      <div className="bg-white flex justify-center rounded-md border-2 border-slate-800 h-fit">
+      <div className="bg-white flex justify-center rounded-md border-2 mx-2 border-slate-800 h-fit">
         <img src="https://img.icons8.com/ios-glyphs/452/search--v1.png" className="w-8 h-fit" />
-        <input className="border-white rounded-md h-fit w-screen" placeholder="SEARCH" type="text" onChange={handleSearch} value={querry} />
+        <input className="border-white rounded-md w-screen" placeholder="SEARCH" type="text" onChange={handleSearch} value={querry} />
       </div>
 
       <div className="flex m-2 md:justify-end">
