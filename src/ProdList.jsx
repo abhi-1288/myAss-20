@@ -11,15 +11,15 @@ function ProdList({ products }){
 
       {products.map(function(item){
         return(
-          <div className="flex md:flex-row flex-col justify-center">
-        <Product
-          key={item.title}
-          title={item.title}
-          category={item.category}
-          imgUrl={item.imgUrl}
-          price={item.price}
-          {...item}
-          />
+          <div className="flex md:flex-row md:w-3/12 flex-col justify-center">
+            <Product
+              key={item.title}
+              title={item.title}
+              category={item.category}
+              imgUrl={item.imgUrl}
+              price={item.price}
+              {...item}
+            />
           </div>
         );
       })}

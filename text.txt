@@ -32,3 +32,5 @@ login page
 login page copy 
 formik installation "npm install formik"
 yup installation "npm install yup"
+product.jsx 
+vite-confic.js 

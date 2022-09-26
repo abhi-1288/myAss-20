@@ -3,6 +3,7 @@ import ProdList from './ProdList'
 import NoMatch from './NoMatch'
 import { getProductList } from './api'
 import Loading from './Loading'
+import { VscArrowLeft, VscArrowRight } from "react-icons/vsc";
 
 function ProductListPage() {
 
@@ -89,6 +90,14 @@ if(loading){
     {data.length > 0 && <ProdList products={data} /> }
     {data.length == 0 && <NoMatch /> }
     {}
+
+    <div className='flex justify-center my-4 space-x-3 items-center '>
+        <div className='text-red-400 text-xl border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md'> <VscArrowLeft /> </div>
+        <div className='text-red-400 text-xl border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md'>{1}</div>
+        <div className='text-red-400 text-xl border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md'> <VscArrowRight /> </div>
+      </div>
+
+
     </div>
 
   )

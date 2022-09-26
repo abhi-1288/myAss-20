@@ -52,7 +52,7 @@ function LogIn(){
                 </form>
             </div>
 
-            <Link to="/forgotPswd" className='text-gray-500 text-lg justify-center flex font-mono'>Forgot PassWord</Link>
+            <Link to="/forgotPswd" className='text-gray-500 text-lg justify-center flex font-mono underline'>Forgot PassWord</Link>
             
             <div className='border-t-2 border-t-gray-400 mx-4'></div>
 
