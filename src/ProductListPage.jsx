@@ -15,7 +15,7 @@ function ProductListPage() {
     const xyz  = getProductList()
 
     xyz.then(function(response){ 
-      setProductList(response.data.products)
+      setProductList(response)
       setLoading(false)
     }) 
   }, [])
