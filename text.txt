@@ -3,6 +3,8 @@ npm run dev
 npm install react-router-dom@6
 npm install axios
 npm install react-icons
+navbar sticky position
+https://reactjsexample.com/a-simple-sticky-library-for-react/#:~:text=%27Sticky%27%20will%20be%20-%20wrapper%20element%2C%20holder%20element,left%3A%200%3B%20width%3A%20%3Cwidth%20that%20was%20before%20%27stickiness%27%3E
 
 git commands {
     setting up a programme folder: git init
@@ -18,20 +20,7 @@ git commands {
 
 change =>
 App.jsx
-api.js
-prodDetail.jsx 
-cartrow.jsx 
-cartlist.jsx 
 cartlistpage.jsx 
-nav.jsx 
-public folder
-signup page 
-forgotpassword page 
-login page  
-login page copy 
-formik installation "npm install formik"
-yup installation "npm install yup"
-product.jsx 
-vite-confic.js 
-productlistpage.jsx
-productlist.jsx 
+prodList.jsx 
+viteconfig.js
+npm run dev 
