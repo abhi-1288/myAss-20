@@ -16,8 +16,6 @@ git commands {
     react publish from github to netlify: npm run build
 }
 
-
-
 change =>
 App.jsx
 cartlistpage.jsx 
