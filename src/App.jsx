@@ -5,10 +5,10 @@ import Footer from './Footer';
 import ProductListPage from './ProductListPage';
 import ProdDetail from './ProdDetail'
 import Err404 from './Err404';
-import CartListpage from './CartListpage';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 import ForgotPswd from './ForgotPswd';
+import CartListpage from "./CartListpage"
 
 function App() {
   
@@ -44,7 +44,8 @@ function App() {
           <Route path="/" element={<ProductListPage />} />
           <Route path="/products/:id/" element={<ProdDetail onCart={handleCart} />} />
           <Route path="*" element={<Err404 />} />
-          <Route path="/Cart" element={<CartListpage  cart={cart} updateCart={updateCart}/>} />
+          {/* <Route path="/Cart" element={<CartListpage cart={cart} updateCart={updateCart}/>} /> */}
+          <Route path="/Cart" element={<CartListpage />} />
           <Route path="log-In" element={<LogIn/>} />
           <Route path="sign-Up" element={<SignUp/>} />
           <Route path="forgotpswd" element={<ForgotPswd/>} />
