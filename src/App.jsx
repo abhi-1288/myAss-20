@@ -44,7 +44,7 @@ function App() {
           <Route path="/" element={<ProductListPage />} />
           <Route path="/products/:id/" element={<ProdDetail onCart={handleCart} />} />
           <Route path="*" element={<Err404 />} />
-          <Route path="/Cart" element={<CartListpage cart={cart} updateCart={updateCart}/>} />
+          <Route path="/Cart" element={<CartListpage  cart={cart} updateCart={updateCart}/>} />
           <Route path="log-In" element={<LogIn/>} />
           <Route path="sign-Up" element={<SignUp/>} />
           <Route path="forgotpswd" element={<ForgotPswd/>} />

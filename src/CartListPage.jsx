@@ -88,7 +88,7 @@ function CartListpage({cart, updateCart}){
                           <h3 className="text-black font-mono text-lg">{p.title}</h3>
                           <h5  className="text-orange-600 font-sans text-md mb-2">₹ {p.price}</h5>
                       </div>
-                      <input productid={p.id} id="val" type="number" onChange={newValue}  value={localCart[p.id]} className="border-2 border-orange-600 rounded text-center w-8" />
+                      <input productid={p.id} id="val" type="number" onChange={newValue}  value={localCart[p.id]} className="border-2 border-orange-600 rounded text-center w-10" />
                       <h4 className="text-slate-500 font-mono">{localCart[p.id] * p.price}</h4>
                       <div className="grid items-end">
                           <Link className="bg-sky-500 p-2 font-RalewayDot rounded-md w-fit h-fit hover:bg-rose-300" to={"/products/" + p.id} >View</Link>
@@ -104,7 +104,7 @@ function CartListpage({cart, updateCart}){
         <div className="m-2 rounded-lg border-2 border-red-400 flex flex-col md:w-auto w-36 p-2 h-min ">
           <button onClick={updateMyCart} className="p-2 bg-red-400 hover:bg-sky-500 rounded-md text-xl font-Qwitcher">Update Cart</button>
           <h1 className="text-red-400 text-xl font-semibold ">Total</h1>
-          <h3 className="text-red-500 text-3xl font-Caveat">${price * price}</h3>
+          <h3 className="text-red-500 text-3xl font-Caveat">${}</h3>
           <input type="text" className="border-4 border-sky-500 rounded m-2 md:w-full w-20" placeholder="Coupon Code" />
           <button className="p-2 bg-red-400 hover:bg-sky-500 rounded-md text-base font-Qwitcher">PROCEED TO CHECKOUT</button>
         </div>
