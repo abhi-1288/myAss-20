@@ -13,7 +13,7 @@ function CartListpage({cart, updateCart}){
 
   // console.log("Product ids", cart, productsIDs)
 
-  const [subTot, setSubTot] = useState(1)
+  // const [subTot, setSubTot] = useState(1)
 
     function prodDelete(event){
         const productId = event.currentTarget.getAttribute("productid")
