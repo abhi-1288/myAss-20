@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {FaTimes} from "react-icons/fa"
 import Loading from "./Loading";
 
-function CartListpage({cart, updateCart}){
+function Cartpage({cart, updateCart}){
   const [products, setProducts] = useState([])
   const productsIDs = Object.keys(cart)
   const [loading, setLoading] = useState(true)
@@ -115,6 +115,6 @@ function CartListpage({cart, updateCart}){
    
 }
 
-export default CartListpage
+export default Cartpage
 
 
