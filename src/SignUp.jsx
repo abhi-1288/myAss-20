@@ -1,29 +1,42 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import * as Yup from 'yup'
-import { useFormik } from 'formik';
+import { useFormik, withFormik } from 'formik';
+import axios from 'axios';
 
-function SignUp(){
+    function signupApi (values, bag){
+        console.log(values.email, values.password, values.fullName) 
+        // axios.post("https://myeasykart.codeyogi.io/signup",{
+        //     email: values.email,
+        //     password: values.password,
+        //     fullName: values.fullName
 
-    function signupApi (values){
-        console.log(values.email, values.password, values.username) 
+        // })
     }
+    
 
     const schema = Yup.object().shape({
         email: Yup.string().email().required(),
         password: Yup.string().min(8, ).required(),
-        username: Yup.string().required()
+        fullName: Yup.string().required()
     })
 
-    const {handleSubmit, values, handleChange, errors, handleBlur, touched, isValid} = useFormik({
-        initialValues:{
+        const initialValues = {
             email: "",
             password: "",
-            username: "",
-        },
-        onSubmit: signupApi,
-        validationSchema: schema,
-    })
+            fullName: "",
+        }
+
+export function SignUp({
+    handleSubmit, 
+    values, 
+    handleChange, 
+    errors, 
+    handleBlur, 
+    touched, 
+    isValid
+    }){
+
 
     return(
         <div >
@@ -32,8 +45,8 @@ function SignUp(){
             </div>
             <div className='md:flex justify-center mb-4'>
                 <form onSubmit={handleSubmit} className='md:w-3/4 flex flex-col justify-center text-center border-2 border-red-400 rounded-md m-4 items-center'>
-                    <h1 className='text-4xl font-Shadows font-black '>Username</h1>
-                    <input onBlur={handleBlur} name='username' value={values.username} onChange={handleChange} type='text' autoComplete="username" required className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='username' />
+                    <h1 className='text-4xl font-Shadows font-black '>fullName</h1>
+                    <input onBlur={handleBlur} name='fullName' value={values.fullName} onChange={handleChange} type='text' autoComplete="fullName" required className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='fullName' />
 
                     <h1 className='text-4xl font-Shadows font-black '>Email</h1>
                     <input onBlur={handleBlur} name='email' value={values.email} onChange={handleChange} id='email' autoComplete="email" required type="email" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='Email' />
@@ -52,7 +65,7 @@ function SignUp(){
             <div className='border-t-2 border-slate-500 mx-4'></div>
 
             <div className='flex md:flex-row flex-col justify-center mb-4 items-center'>
-                <h1 className='flex md:flex-row flex-col items-center text-3xl text-blue-400 font-Pacifico'>Already Have ACCOUNT?</h1>
+                <h1 className='flex md:flex-row flex-col items-center text-3xl text-blue-400 font-Pacifico'>Already Have AN ACCOUNT?</h1>
                 <Link to='/log-in' className='text-red-400 mx-2 underline font-Shadows text-3xl hover:italic'> <h1>Click Here</h1> </Link>
             </div>
         </div>
@@ -60,7 +73,14 @@ function SignUp(){
 }
 
 
-export default SignUp
+const myHOC = withFormik({
+    validationSchema: schema,
+    initialValues: initialValues,
+    handleSubmit: signupApi,
+})
+const mySignup = myHOC(SignUp)
+
+export default mySignup
 
 
 

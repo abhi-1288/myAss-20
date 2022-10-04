@@ -16,9 +16,24 @@ git commands {
     react publish from github to netlify: npm run build
 }
 
+
+
 change =>
 App.jsx
-cartlistpage.jsx 
-prodList.jsx 
-viteconfig.js
+Login.jsx 
+SignUp.jsx
+Nav.jsx 
+Nav.css File
+ProductListPage.jsx
+LoginRoute.jsx File 
+AuthRoute.jsx file
+Accounts.jsx file 
+1 file delete (.js)
+Button.jsx
+CartListPage.jsx
+Test.jsx File
+
+cartRow.jsx 
+CartList.jsx
+
 npm run dev 

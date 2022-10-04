@@ -1,29 +1,54 @@
-import { useFormik } from 'formik';
+import { useFormik, withFormik } from 'formik';
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import * as Yup from 'yup'
+import axios from 'axios';
 
-function LogIn(){
 
-    function callLoginApi (values){
+
+    function callLoginApi (values, bag){
         // console.log('callLoginApi')
-        console.log(values.email, values.password) 
+        // console.log(values.email, values.password) 
+        axios.post("https://myeasykart.codeyogi.io/login",{
+            email: values.email,
+            password: values.password	
+        } )
+        .then((response, )=>{
+            const {user, token} = response.data
+            localStorage.setItem('token', token)
+            // console.log(bag)
+            // bag.props.setUser(user);
+            bag.props.setUser(user)
+        }).catch(() => {
+            console.log('Invalid Credentials')
+        } )
     }
 
     const schema = Yup.object().shape({
         email: Yup.string().email().required(),
-        password: Yup.string().min(8, ).required(),
+        password: Yup.string().min(8).required(),
     })
 
-    const {handleSubmit, values, handleChange, resetPage, errors, handleBlur, touched, isValid} = useFormik({
-        initialValues:{
-            email: "",
-            password: "",
-        },
-        onSubmit: callLoginApi,
-        validationSchema: schema,
-    })
+    const initialValues = {
+        email: "",
+        password: "",
+    }
 
+
+    export function LogIn({
+        handleSubmit,
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        resetPage,
+        isValid,
+    }){
+
+        // if(user){
+        //     return <Navigate to="/" />
+        // }
 
     return(
         <div >
@@ -64,8 +89,14 @@ function LogIn(){
     )
 }
 
+const myHOC = withFormik({
+    validationSchema:schema,
+    initialValues: initialValues,
+    handleSubmit: callLoginApi,
+})
+const myLogin = myHOC(LogIn)
 
-export default LogIn
+export default myLogin
 
 
 

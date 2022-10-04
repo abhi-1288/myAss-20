@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import ProdList from './ProdList'
+import { Navigate } from 'react-router-dom'
 import NoMatch from './NoMatch'
 import { getProductList } from './api'
 import Loading from './Loading'
 import { VscArrowLeft, VscArrowRight } from "react-icons/vsc";
 
-function ProductListPage() {
+function ProductListPage({user}) {
 
   const [productList, setProductList] = useState([])
   const [loading, setLoading] = useState(true)
@@ -62,6 +63,10 @@ function ProductListPage() {
 if(loading){
   return <Loading />
 }
+
+// if(!user){
+//   return <Navigate to="/log-In" />
+// }
 
 
 
