@@ -15,7 +15,7 @@ import Loading from './Loading';
 import AuthRoute from './AuthRoute';
 import LoginRoute from './LoginRoute';
 import Test from './Test';
-import MyAllert from './myAllert';
+import Allert from './Allert';
 import {UserContext, AlertContext} from './Contexts'
 
 
@@ -84,7 +84,7 @@ function App() {
       <UserContext.Provider value={{user, setUser}}>
       <AlertContext.Provider value={{alert, setAlert, removeAlert}}>
       <div className="absolute md:top-80 top-48 md:left-0 left-12">
-        <MyAllert/>
+        <Allert/>
       </div>
       <Nav productCount={totalCount} />
 

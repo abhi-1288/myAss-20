@@ -17,7 +17,7 @@ const styles = {
   }
 }
 // myAllert.jsx
-function MyAllert({alert, removeAlert}) {
+function Allert({alert, removeAlert}) {
 
   useEffect(() => {
     if(alert){
@@ -54,4 +54,4 @@ function MyAllert({alert, removeAlert}) {
 }
 
 
-export default WithAlert(MyAllert);
+export default WithAlert(Allert);
