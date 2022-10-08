@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { getProductData } from './api';
 import Loading from './Loading';
 import Err404 from './Err404';
+import Button  from './Button';
 
 function ProdDetail({onCart}){
   const id = +(useParams().id)
@@ -80,15 +81,15 @@ function handleInputInitial() {
             {product.description}
           </p>
           
-          <div className="justify-center space-x-2 flex ">
+          <div className="justify-center space-x-2 flex items-center">
             <div>
               
               <input type="number" value={count} onChange={handleValue} className="border-2 border-orange-600 rounded text-center w-8"/>
               
             </div>
-            <button onClick={onButtonClick} className="bg-rose-400 px-2 py-1 rounded border-2 font-Qwitcher text-2xl border-orange-500 hover:bg-red-600 ">
-              ADD TO CART
-            </button>
+            <Button onClick={onButtonClick}>ADD TO CART</Button>
+              
+            
           </div>
 
           <div className='flex flex-row justify-between'>

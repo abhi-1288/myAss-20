@@ -15,7 +15,10 @@ import Loading from './Loading';
 import AuthRoute from './AuthRoute';
 import LoginRoute from './LoginRoute';
 import Test from './Test';
-// import axios from 'axios';
+import MyAllert from './myAllert';
+import {UserContext, AlertContext} from './Contexts'
+
+
 
 function App() {
   
@@ -24,7 +27,13 @@ function App() {
   const [cart, setCart] = useState(savedData)
   const [user, setUser] = useState();
   const [loadingUser, setLoadingUser] = useState(true);
+  const [alert, setAlert] = useState();
 
+  
+  const removeAlert = () => {
+    setAlert(undefined)
+    console.log("alert removed")
+  }
 
 
   const token = localStorage.getItem('token');
@@ -71,25 +80,31 @@ function App() {
 
   // let path = window.location.pathname
   return (
-    <div>
-      {/* hello */}
-      <Nav productCount={totalCount} user={user} />
+    <div className='relative'>
+      <UserContext.Provider value={{user, setUser}}>
+      <AlertContext.Provider value={{alert, setAlert, removeAlert}}>
+      <div className="absolute md:top-80 top-48 md:left-0 left-12">
+        <MyAllert/>
+      </div>
+      <Nav productCount={totalCount} />
+
       <div className='grow'>
         <Routes>
-          <Route path="/" element={<LoginRoute user={user}> <ProductListPage /> </LoginRoute>} />
-          {/* <Route path="/" element={<ProductListPage user={user} />} /> */}
+          <Route path="/" element={<LoginRoute> <ProductListPage /> </LoginRoute>} />
           <Route path="/products/:id/" element={<ProdDetail onCart={handleCart} />} />
           <Route path="*" element={<Err404 />} />
           <Route path="/Cart" element={<CartListpage cart={cart} updateCart={updateCart}/>} />
-          <Route path="log-In" element={<AuthRoute user={user}> <LogIn  setUser={setUser}/> </AuthRoute>} />
-          {/* <Route path="log-In" element={<LogIn user={user} setUser={setUser}/>} /> */}
-          <Route path="sign-Up" element={<SignUp/>} />
+          <Route path="log-In" element={<AuthRoute> <LogIn /> </AuthRoute>} />
+          <Route path="sign-Up" element={<SignUp />} />
           <Route path="forgotpswd" element={<ForgotPswd/>} />
-          <Route path="/accounts" element={<Accounts user={user} setUser={setUser}/>} />
+          <Route path="/accounts" element={<Accounts setCart={updateCart} cart={cart} />} />
           <Route path="/test" element={<Test/>} />
         </Routes>
       </div>
+
       <Footer />
+      </AlertContext.Provider>
+      </UserContext.Provider>
     </div>
   )
 }

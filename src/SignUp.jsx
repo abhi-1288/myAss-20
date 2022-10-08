@@ -1,30 +1,39 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import * as Yup from 'yup'
-import { useFormik, withFormik } from 'formik';
+import { withFormik } from 'formik';
 import axios from 'axios';
+import WithUser from './WithUser';
+import WithAlert from './WithAlert';
 
-    function signupApi (values, bag){
-        console.log(values.email, values.password, values.fullName) 
-        // axios.post("https://myeasykart.codeyogi.io/signup",{
-        //     email: values.email,
-        //     password: values.password,
-        //     fullName: values.fullName
-
-        // })
+    function signupApi (values, ...bag){
+        // console.log(values.email, values.password, values.full_name) 
+        axios.post("https://myeasykart.codeyogi.io/signup",{
+            email: values.email,
+            password: values.password,
+            full_name: values.full_name
+        })
+        .then((response)=>{
+            console.log(response.data, "response")
+            localStorage.setItem('token', response.data.token)
+            bag.props.setUser(response.data.user)
+        })
+        .catch((err)=>{
+            console.log("err", err)
+        })
     }
     
 
     const schema = Yup.object().shape({
         email: Yup.string().email().required(),
-        password: Yup.string().min(8, ).required(),
-        fullName: Yup.string().required()
+        password: Yup.string().min(8).required(),
+        full_name: Yup.string().min(4).required()
     })
 
         const initialValues = {
             email: "",
             password: "",
-            fullName: "",
+            full_name: "",
         }
 
 export function SignUp({
@@ -34,7 +43,8 @@ export function SignUp({
     errors, 
     handleBlur, 
     touched, 
-    isValid
+    isValid,
+    setUser
     }){
 
 
@@ -45,8 +55,8 @@ export function SignUp({
             </div>
             <div className='md:flex justify-center mb-4'>
                 <form onSubmit={handleSubmit} className='md:w-3/4 flex flex-col justify-center text-center border-2 border-red-400 rounded-md m-4 items-center'>
-                    <h1 className='text-4xl font-Shadows font-black '>fullName</h1>
-                    <input onBlur={handleBlur} name='fullName' value={values.fullName} onChange={handleChange} type='text' autoComplete="fullName" required className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='fullName' />
+                    <h1 className='text-4xl font-Shadows font-black '>Full Name</h1>
+                    <input onBlur={handleBlur} name='full_name' value={values.full_name} onChange={handleChange} type='text' autoComplete="full_name" required className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='full_name' />
 
                     <h1 className='text-4xl font-Shadows font-black '>Email</h1>
                     <input onBlur={handleBlur} name='email' value={values.email} onChange={handleChange} id='email' autoComplete="email" required type="email" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='Email' />
@@ -73,14 +83,13 @@ export function SignUp({
 }
 
 
-const myHOC = withFormik({
+const mySignup = withFormik({
     validationSchema: schema,
     initialValues: initialValues,
     handleSubmit: signupApi,
-})
-const mySignup = myHOC(SignUp)
+})(SignUp)
 
-export default mySignup
+export default WithAlert(WithUser(mySignup));
 
 
 

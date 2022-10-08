@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Navigate, Route } from "react-router-dom";
+import React from "react";
+import { Navigate} from "react-router-dom";
+import WithUser from "./WithUser";
 
 // AuthRoute
 function AuthRoute({user, children}) {
@@ -10,6 +11,6 @@ function AuthRoute({user, children}) {
   return children
 }
 
-export default AuthRoute;
+export default WithUser(AuthRoute);
 
 //for log-in route

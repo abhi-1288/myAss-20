@@ -5,6 +5,7 @@ npm install axios
 npm install react-icons
 navbar sticky position
 https://reactjsexample.com/a-simple-sticky-library-for-react/#:~:text=%27Sticky%27%20will%20be%20-%20wrapper%20element%2C%20holder%20element,left%3A%200%3B%20width%3A%20%3Cwidth%20that%20was%20before%20%27stickiness%27%3E
+npm i react-toastify
 
 git commands {
     setting up a programme folder: git init
@@ -17,23 +18,25 @@ git commands {
 }
 
 
+npm i create-context
+
 
 change =>
-App.jsx
-Login.jsx 
-SignUp.jsx
+myAllert.jsx file 
+signup.jsx 
+App.jsx 
+Account.jsx
+LoginRoute.jsx
+AuthRoute.jsx
 Nav.jsx 
-Nav.css File
-ProductListPage.jsx
-LoginRoute.jsx File 
-AuthRoute.jsx file
-Accounts.jsx file 
-1 file delete (.js)
-Button.jsx
-CartListPage.jsx
-Test.jsx File
+WithUser.jsx
+WithAlert.jsx
+WithProvider.jsx 
 
-cartRow.jsx 
-CartList.jsx
+ProdDetail.jsx
+Product.jsx 
+login.jsx
+signup.jsx
+
 
 npm run dev 

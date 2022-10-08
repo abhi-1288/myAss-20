@@ -3,12 +3,12 @@ import React, {useState, useEffect} from 'react'
 import {Link, Navigate} from 'react-router-dom'
 import * as Yup from 'yup'
 import axios from 'axios';
+import WithUser from './WithUser';
+import WithAlert from './WithAlert';
 
 
 
     function callLoginApi (values, bag){
-        // console.log('callLoginApi')
-        // console.log(values.email, values.password) 
         axios.post("https://myeasykart.codeyogi.io/login",{
             email: values.email,
             password: values.password	
@@ -16,11 +16,9 @@ import axios from 'axios';
         .then((response, )=>{
             const {user, token} = response.data
             localStorage.setItem('token', token)
-            // console.log(bag)
-            // bag.props.setUser(user);
             bag.props.setUser(user)
         }).catch(() => {
-            console.log('Invalid Credentials')
+            bag.props.setAlert({type:"error", message:'Invalid Email or Password'})
         } )
     }
 
@@ -89,14 +87,13 @@ import axios from 'axios';
     )
 }
 
-const myHOC = withFormik({
+const myLogin = withFormik({
     validationSchema:schema,
     initialValues: initialValues,
     handleSubmit: callLoginApi,
-})
-const myLogin = myHOC(LogIn)
+})(LogIn)
 
-export default myLogin
+export default WithAlert(WithUser(myLogin));
 
 
 

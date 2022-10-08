@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { FaOpencart } from 'react-icons/fa'
-import { VscAccount } from 'react-icons/vsc'
 import { CgChevronDown } from "react-icons/cg";
 import "./Nav.css"
+import WithUser from './WithUser';
 
 
 
-function Nav({ productCount, user }) {
+function Nav({user, productCount}) {
 
   console.log(user)
   return (
@@ -35,16 +35,19 @@ function Nav({ productCount, user }) {
             </div>
           </div>
         </div>
-        
-        {/* <Link to='log-in'> <VscAccount className='text-4xl text-red-400'/> </Link> */}
+        {
+          user &&
         <Link to="/Cart" className='flex relative items-center justify-center'>
           <div className="text-5xl m-2 text-red-400"> <FaOpencart /> </div>
           <span className='text-red-400 text-lg p-2 rounded-full absolute'>{productCount}</span>
         </Link>
+        || <div className='w-20'></div>
+        }
+
       </div>
 
     </div>
   );
 }
 
-export default Nav;
+export default WithUser(Nav);
