@@ -22,21 +22,20 @@ npm i create-context
 
 
 change =>
-myAllert.jsx file 
-signup.jsx 
-App.jsx 
-Account.jsx
-LoginRoute.jsx
-AuthRoute.jsx
-Nav.jsx 
-WithUser.jsx
-WithAlert.jsx
-WithProvider.jsx 
+App.jsx
+Footer.jsx 
+Product.jsx
+TandC.jsx file
+Login.jsx
+prodList.jsx 
+prodDetail.jsx
+providers folder
+UserProvider.jsx file
+AlertProvider.jsx file
+api.js
+productListPagr.jsx 
 
-ProdDetail.jsx
-Product.jsx 
-login.jsx
-signup.jsx
 
+npm i lodash
 
 npm run dev 

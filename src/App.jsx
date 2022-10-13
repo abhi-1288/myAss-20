@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import Nav from './Nav';
 import Footer from './Footer';
@@ -10,13 +10,13 @@ import SignUp from './SignUp';
 import LogIn from './LogIn';
 import ForgotPswd from './ForgotPswd';
 import Accounts from './Accounts';
-import axios from 'axios';
-import Loading from './Loading';
 import AuthRoute from './AuthRoute';
 import LoginRoute from './LoginRoute';
-import Test from './Test';
+// import Test from './Test';
 import Allert from './Allert';
-import {UserContext, AlertContext} from './Contexts'
+import TandC from './TandC';
+import UserProvider from './providers/UserProvider';
+import AlertProvider from './providers/AlertProvider';
 
 
 
@@ -25,35 +25,7 @@ function App() {
   const savedDataString = localStorage.getItem("my-cart") || "{}"
   const savedData = JSON.parse(savedDataString)
   const [cart, setCart] = useState(savedData)
-  const [user, setUser] = useState();
-  const [loadingUser, setLoadingUser] = useState(true);
-  const [alert, setAlert] = useState();
-
   
-  const removeAlert = () => {
-    setAlert(undefined)
-    console.log("alert removed")
-  }
-
-
-  const token = localStorage.getItem('token');
-  useEffect(() => {
-    if(token){
-      axios.get("https://myeasykart.codeyogi.io/me", {
-        headers: {
-          Authorization: token,
-        } ,
-      } )
-      .then((response) => {
-        setUser(response.data)
-        setLoadingUser(false)
-      })
-    }else{
-      setLoadingUser(false)
-    }
-  }, [])
-
-  console.log("logged in user is", user)
 
 
 
@@ -74,37 +46,34 @@ function App() {
     return previous + cart[current]
   }, 0)
 
-  if(loadingUser){
-    return <Loading />
-  }
-
   // let path = window.location.pathname
   return (
     <div className='relative'>
-      <UserContext.Provider value={{user, setUser}}>
-      <AlertContext.Provider value={{alert, setAlert, removeAlert}}>
-      <div className="absolute md:top-80 top-48 md:left-0 left-12">
-        <Allert/>
-      </div>
-      <Nav productCount={totalCount} />
+      <UserProvider>
+        <AlertProvider>
+          <div className="absolute md:top-80 top-48 md:left-0 left-12">
+            <Allert/>
+          </div>
+          <Nav productCount={totalCount} />
 
-      <div className='grow'>
-        <Routes>
-          <Route path="/" element={<LoginRoute> <ProductListPage /> </LoginRoute>} />
-          <Route path="/products/:id/" element={<ProdDetail onCart={handleCart} />} />
-          <Route path="*" element={<Err404 />} />
-          <Route path="/Cart" element={<CartListpage cart={cart} updateCart={updateCart}/>} />
-          <Route path="log-In" element={<AuthRoute> <LogIn /> </AuthRoute>} />
-          <Route path="sign-Up" element={<SignUp />} />
-          <Route path="forgotpswd" element={<ForgotPswd/>} />
-          <Route path="/accounts" element={<Accounts setCart={updateCart} cart={cart} />} />
-          <Route path="/test" element={<Test/>} />
-        </Routes>
-      </div>
+          <div className='grow'>
+            <Routes>
+              <Route path="/" element={<LoginRoute> <ProductListPage /> </LoginRoute>} />
+              <Route path="/products/:id/" element={<ProdDetail onCart={handleCart} />} />
+              <Route path="*" element={<Err404 />} />
+              <Route path="/Cart" element={<CartListpage cart={cart} updateCart={updateCart}/>} />
+              <Route path="log-In" element={<AuthRoute> <LogIn /> </AuthRoute>} />
+              <Route path="sign-Up" element={<SignUp />} />
+              <Route path="forgotpswd" element={<ForgotPswd/>} />
+              <Route path="/accounts" element={<Accounts setCart={updateCart} cart={cart} />} />
+              {/* <Route path="/test" element={<Test/>} /> */}
+              <Route path="/tandc" element={<TandC/>} />
+            </Routes>
+          </div>
 
-      <Footer />
-      </AlertContext.Provider>
-      </UserContext.Provider>
+          <Footer />
+        </AlertProvider>
+      </UserProvider> 
     </div>
   )
 }

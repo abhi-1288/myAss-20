@@ -1,82 +1,72 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import ProdList from './ProdList'
-import { Navigate } from 'react-router-dom'
 import NoMatch from './NoMatch'
 import { getProductList } from './api'
 import Loading from './Loading'
 import { VscArrowLeft, VscArrowRight } from "react-icons/vsc";
+import {range} from 'lodash'
 
 function ProductListPage({user}) {
 
-  const [productList, setProductList] = useState([])
+  const [productList, setProductList] = useState()
   const [loading, setLoading] = useState(true)
-  const [sort, setSort] = useState("default")
-  const [querry, setQuerry] = useState("");
+  // const [sort, setSort] = useState("default")
+  // const [query, setQuery] = useState("");
 
-  useEffect (function(){
-    const xyz  = getProductList()
+  const [searchParams, setSearchParams] = useSearchParams();
 
-    xyz.then(function(response){ 
+  const params = Object.fromEntries([...searchParams])
+
+  let {query, sort, page} = params
+
+  page = page || 1;
+  sort = sort || "default";
+  query = query || "";
+
+  useEffect (function() {
+    
+    let sortBy;
+    let sortType;
+
+    if (sort == "title") {
+      sortBy = "title";
+    } else if (sort == "lowToHigh") {
+      sortBy = "price";
+    } else if (sort == "highToLow") {
+      sortBy = "price";
+      sortType = "desc";
+    }
+
+
+    getProductList(sortBy, query, page, sortType).then(function(response){ 
       setProductList(response)
       setLoading(false)
     }) 
-  }, [])
 
-  // let data = allData;
-  // const [data, setData] = useState(allData)
 
-  let data = productList.filter(function(item) {
-    const lowerCaseTitle = item.title.toLowerCase()
-    const lowerCaseQuerry = querry.toLowerCase()
+  }, [ sort, query, page ])
 
-    return lowerCaseTitle.indexOf(lowerCaseQuerry) != -1
-  })
-
-  if (sort === 'lowToHigh') {
-    data.sort(function(x, y) {
-      return x.price - y.price
-    })
-  }
-  else if (sort == "title") {
-    data.sort(function(x, y) {
-      return x.title < y.title ? -1 : 1
-    })
-  }
-  else if (sort == "highToLow") {
-    data.sort(function(x, y) {
-      return y.price - x.price
-    })
-  }
 
 
   function handleSearch(event) {
-    setQuerry(event.target.value)
-    console.log("new data", data)
-
+    setSearchParams({...params, query: event.target.value, page:1},{replace: false})
   }
 
   function handleSort(event) {
-    setSort(event.target.value)
-    console.log("sorting", event.target.value)
+    setSearchParams({...params, sort: event.target.value},{replace: false})
   }
 
 if(loading){
   return <Loading />
 }
 
-// if(!user){
-//   return <Navigate to="/log-In" />
-// }
-
-
-
-// fakestore();
   return (
     <div className="">
 
       <div className="bg-white flex justify-center rounded-md border-2 mx-2 border-slate-800 h-fit">
         <img src="https://img.icons8.com/ios-glyphs/452/search--v1.png" className="w-8 h-fit" />
-        <input className="border-white rounded-md w-screen" placeholder="SEARCH" type="text" onChange={handleSearch} value={querry} />
+        <input className="border-white rounded-md w-screen" placeholder="SEARCH" type="text" onChange={handleSearch} value={query} />
       </div>
 
       <div className="flex m-2 md:justify-end">
@@ -92,14 +82,17 @@ if(loading){
 
 
 
-    {data.length > 0 && <ProdList products={data} /> }
-    {data.length == 0 && <NoMatch /> }
-    {}
+    {productList.data.length > 0 &&  <ProdList products={productList.data} /> }
+    {productList.data.length == 0 && <NoMatch /> }
 
     <div className='flex justify-center my-4 space-x-3 items-center '>
-        <div className='text-red-400 text-xl border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md'> <VscArrowLeft /> </div>
-        <div className='text-red-400 text-xl border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md'>{1}</div>
-        <div className='text-red-400 text-xl border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md'> <VscArrowRight /> </div>
+       {range(1, productList.meta.last_page + 1).map((pageNumber) => {
+          return (
+            <Link key={pageNumber}
+             to={"?" + new URLSearchParams({...params, page: pageNumber})}
+             className={'text-red-400 border-2 border-sky-500 w-8 h-8 items-center flex justify-center rounded-md text-2xl' + (pageNumber == page  ? "bg-red-400 text-sky-500 text-2xl animate-bounce" : "" )}> {pageNumber} </Link>
+          )
+       })}
       </div>
 
 

@@ -11,9 +11,8 @@ function ProdList({ products }){
 
       {products.map(function(item){
         return(
-          <div className="flex md:flex-row md:w-3/12 flex-col justify-center">
+          <div key={item.id} className="flex md:flex-row md:w-3/12 flex-col justify-center">
             <Product
-              key={item.title}
               {...item}
             />
           </div>

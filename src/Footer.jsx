@@ -30,8 +30,9 @@ function Footer() {
 
       <div className="m-6 text-center">
         <h2 className="text-3xl font-serif font-semibold text-gray-50">Important Links</h2>
-        <div>
+        <div className='grid space-y-2 my-2'>
           <a className="font-serif text-xl hover:italic hover:text-red-400 text-white hover:font-bold" href="https://codeyogi.io/">CodeYogi</a>
+          <Link className="font-serif text-xl hover:italic hover:text-red-400 text-white hover:font-bold" to="tandc">Terms and Conditions</Link>
         </div>
       </div>
 

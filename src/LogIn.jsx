@@ -1,5 +1,5 @@
-import { useFormik, withFormik } from 'formik';
-import React, {useState, useEffect} from 'react'
+import { withFormik } from 'formik';
+import React from 'react'
 import {Link, Navigate} from 'react-router-dom'
 import * as Yup from 'yup'
 import axios from 'axios';
@@ -17,6 +17,7 @@ import WithAlert from './WithAlert';
             const {user, token} = response.data
             localStorage.setItem('token', token)
             bag.props.setUser(user)
+            return <Navigate to="/" />
         }).catch(() => {
             bag.props.setAlert({type:"error", message:'Invalid Email or Password'})
         } )
