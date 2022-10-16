@@ -6,7 +6,7 @@ import WithUser from "./WithUser";
 function LoginRoute({user, children}) {
 
     if(!user){
-        return <Navigate to="/log-In" />
+        // return <Navigate to="/log-In" />
       }
   return children
 }

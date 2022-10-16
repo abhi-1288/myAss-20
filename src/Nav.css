@@ -1,6 +1,7 @@
 /* Dropdown Button */
 .dropbtn {
     background-color: rgb(254 215 170 / 0.75);
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity));
     padding: 8px;
     font-size: 16px;
     border: none;
@@ -17,8 +18,10 @@
     display: none;
     position: absolute;
     background-color: rgb(254 215 170 / 0.75);;
+    /* background-color: rgb(254 202 202 / var(--tw-bg-opacity)); */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
     z-index: 1;
   }
   
@@ -31,6 +34,8 @@
     font-family: 'Courier New', Courier, monospace;
     margin: 5px;
   }
+
+ 
   
   /* Change color of dropdown links on hover */
   .dropdown-content .btns:hover {background-color: #ddd; border-radius: 40px; margin: 5px;}
@@ -40,3 +45,15 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: rgb(254 215 170 / 0.75);}
+
+    /* MEDIA */
+
+@media (prefers-color-scheme: dark) {
+  .dropdown-content{
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+  }
+
+  .dropdown:hover .dropbtn{
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity));}
+  }
+    

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {allData} from './DummyData'
-import CartRow from './CartRow';
-import CartList from './CartList';
-import CartListPage from './CartListPage';
+import Hi from "./Hi";
+import MyAllert from "./myAllert";
 
 // Test component
 function Test() {
 
   return (
     <div>
-        <CartListPage products={allData} cart={{1:3, 4:2, 7:1}} />
+        {/* hello */}
+        <Hi/>
     </div>
   )
 }

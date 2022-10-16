@@ -23,17 +23,25 @@ npm i create-context
 
 change =>
 App.jsx
-Footer.jsx 
-Product.jsx
-TandC.jsx file
-Login.jsx
-prodList.jsx 
+Api.js 
+product.jsx 
 prodDetail.jsx
-providers folder
-UserProvider.jsx file
-AlertProvider.jsx file
-api.js
-productListPagr.jsx 
+cartListpage.jsx
+Cartrow.jsx
+product.jsx
+productListPage.jsx
+index.html
+Button .jsx
+tailwindConfig.js
+Nav.jsx
+Nav.css
+Footer.jsx
+LoginRoute.jsx
+CartProvider.jsx in Providers folder
+Context.jsx
+withProvider.jsx
+CartList.jsx
+Login.jsx
 
 
 npm i lodash

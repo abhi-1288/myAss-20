@@ -64,15 +64,15 @@ if(loading){
   return (
     <div className="">
 
-      <div className="bg-white flex justify-center rounded-md border-2 mx-2 border-slate-800 h-fit">
+      <div className="bg-white flex justify-center items-center rounded-md border-2 mx-2 border-slate-800 h-fit">
         <img src="https://img.icons8.com/ios-glyphs/452/search--v1.png" className="w-8 h-fit" />
-        <input className="border-white rounded-md w-screen" placeholder="SEARCH" type="text" onChange={handleSearch} value={query} />
+        <input className="border-white rounded-md dark:text-gray-800 p-2 w-screen" placeholder="SEARCH" type="text" onChange={handleSearch} value={query} />
       </div>
 
       <div className="flex m-2 md:justify-end">
 
 
-        <select value={sort} onChange={handleSort} className="h-fit w-fit border-2 rounded border-emerald-500 m-1 ">
+        <select value={sort} onChange={handleSort} className="h-fit w-fit dark:text-gray-800 border-2 rounded border-emerald-500 m-1 ">
           <option value="default">Default Sort</option>
           <option value="title">Sort by Title</option>
           <option value="lowToHigh">Sort by Price: Low to High</option>

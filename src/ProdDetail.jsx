@@ -9,8 +9,9 @@ import { getProductData } from './api';
 import Loading from './Loading';
 import Err404 from './Err404';
 import Button  from './Button';
+import { WithCart } from './WithProvider';
 
-function ProdDetail({onCart}){
+function ProdDetail({addToCart}){
   const id = +(useParams().id)
   const [product, setProduct] = useState()
   const [loading, setLoading] = useState(true)
@@ -41,7 +42,7 @@ function handleInputInitial() {
   }
 
   function onButtonClick(){
-    onCart(id, count)
+    addToCart(id, count)
 
   }
 
@@ -61,7 +62,7 @@ function handleInputInitial() {
   return (
     <div className='grow'>
 
-      <Link to= "/" onClick={handleInputInitial}> <IoArrowBackCircleOutline className="w-8 h-8 m-2" /> </Link>
+      {/* <Link to= "/" onClick={handleInputInitial}> <IoArrowBackCircleOutline className="w-8 h-8 m-2" /> </Link> */}
     
     <div className="md:flex-row flex flex-col text-center items-center   p-2 my-5 bg-slate-400/50 m-2 rounded-md md:space-x-6">
         <div className="md:w-72 w-64 md:h-80 h-64">
@@ -71,6 +72,10 @@ function handleInputInitial() {
           <h2 className="text-xl text-black font-semibold font-mono">
             {product.title}
           </h2>
+
+          <h4 className='font-mono dark:text-gray-300 text-slate-500 font-bold'>
+            <span className='text-black'>BRAND:</span> {product.brand}
+          </h4>
 
           <h3 className="text-lg text-black font-semibold font-sans">
             ₹ {product.price}
@@ -83,7 +88,7 @@ function handleInputInitial() {
           <div className="justify-center space-x-2 flex items-center">
             <div>
               
-              <input type="number" value={count} onChange={handleValue} className="border-2 border-orange-600 rounded text-center w-8"/>
+              <input type="number" value={count} onChange={handleValue} className="text-black border-2 border-orange-600 rounded text-center w-8"/>
               
             </div>
             <Button onClick={onButtonClick}>ADD TO CART</Button>
@@ -96,7 +101,7 @@ function handleInputInitial() {
               { id > 1 && (<Link onClick={handleInputInitial} to={"/products/" + (id -1)} > < FcPrevious className='h-10 w-10'/> </Link>) }
             </div>
             <div>
-              <Link onClick={handleInputInitial} to={"/products/" + (id + 1)} > < FcNext className='h-10 w-10'/> </Link>
+              <Link onClick={handleInputInitial} to={"/products/" + (id + 1)} > < FcNext className='h-10 w-10 '/> </Link>
               </div>
           </div>
 
@@ -107,4 +112,4 @@ function handleInputInitial() {
   ) 
 }
 
-export default ProdDetail;
+export default WithCart(ProdDetail);

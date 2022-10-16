@@ -6,7 +6,7 @@ import { AiOutlineCopyrightCircle } from 'react-icons/ai'
 
 function Footer() {
   return(
-    <div className="bg-gray-900 rounded-t-md ">
+    <div className="bg-gray-900 rounded-t-md border-t-2 border-white dark:bg-slate-800">
     <div className="flex md:flex-row flex-col md:justify-center ">
 
       <div className="m-6">

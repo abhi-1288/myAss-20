@@ -1,4 +1,4 @@
-import { AlertContext, UserContext } from "./Contexts"
+import { AlertContext, UserContext, CartContext } from "./Contexts"
 import React from "react";
 
 const WithProvider = (providerName) =>{
@@ -17,3 +17,4 @@ const WithProvider = (providerName) =>{
 
 export const WithAlert = WithProvider(AlertContext)
 export const WithUser = WithProvider(UserContext)
+export const WithCart = WithProvider(CartContext)

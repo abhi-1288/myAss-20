@@ -13,7 +13,17 @@ module.exports = {
         Qwitcher:['Qwitcher Grypen', 'cursive'],
         
       },
+
+      colors: {
+        neonPurple: "#EA00FF",
+        deepPink: "#FF1493",
+        neonOrangr1: "#FAD7A1",
+        neonOrange2: "#E96D71",
+      },
+
+
     },
   },
+  
   plugins: [],
 }

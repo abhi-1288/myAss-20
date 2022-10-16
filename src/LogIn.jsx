@@ -60,12 +60,12 @@ import WithAlert from './WithAlert';
                     <h1 className='text-4xl font-Shadows font-black '>Log-In</h1>
                     <h2 className='text-4xl font-Satisfy text-blue-500 m-2'>Enter Your Email</h2>
                     <label className='sr-only' htmlFor="email" placeholder='email'>EMAIL</label>
-                        <input onBlur={handleBlur} name='email' value={values.email} onChange={handleChange}  id='email' autoComplete="email" required type="email" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='Email'/>
+                        <input onBlur={handleBlur} name='email' value={values.email} onChange={handleChange}  id='email' autoComplete="email" required type="email" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-black text-3xl' placeholder='Email'/>
                     {touched.email && errors.email && <div className='text-red-500 rounded font-Shadows text-2xl p-2' >{errors.email}</div> }
 
                     <h2 className='text-4xl font-Satisfy text-blue-500 m-2'>Enter Your Password</h2>
                     <label className='sr-only' htmlFor="password">PASSWORD</label>
-                        <input onBlur={handleBlur} name='password' value={values.password} onChange={handleChange} id='password' autoComplete='current-password'  type="password" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='password'/>
+                        <input onBlur={handleBlur} name='password' value={values.password} onChange={handleChange} id='password' autoComplete='current-password'  type="password" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-black text-3xl' placeholder='password'/>
                     
                     {touched.password && errors.password &&( <div className='text-red-500 rounded font-Shadows text-2xl p-2' >{errors.password}</div> )}
                     
