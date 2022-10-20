@@ -11,8 +11,6 @@ function CartRow({  product, quantity, onQuantityChange, onRemove}){
    const handleRemove = () => {
     onRemove(product.id);
    }
-
-   let subtot = quantity * product.price
     
     return(
         <div>
@@ -31,7 +29,7 @@ function CartRow({  product, quantity, onQuantityChange, onRemove}){
                         <h5  className="text-orange-600 font-sans text-md mb-2">₹ {product.price}</h5>
                     </div>
                     <input onChange={handleChange} id="val" type="number"  value={quantity} className="border-2 dark:text-black border-orange-600 rounded text-center w-10 h-10" />
-                    <h4>{subtot}</h4>
+                    <h4>{quantity * product.price}</h4>
                     <div className="grid items-end">
                         <Link className="bg-sky-500 p-2 font-RalewayDot rounded-md w-fit h-fit hover:bg-rose-300" to={"/products/" + product.id} >View</Link>
                     </div>

@@ -1,71 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getCart, getProductsByIds, saveCart } from "../api";
 import { CartContext } from "../Contexts";
 import { WithUser } from "../WithProvider";
 
 // CartProvider component
-function CartProvider( {children, isLoggedIn} ) {
+function CartProvider({ isLoggedIn, children }) {
 
-    const [cart, setCart] = useState({})
+  
+  const [cart, setCart] = useState([]);
 
-
-    useEffect(() => {
-      if(isLoggedIn){
-        getCart().then(function(savedCart){
-          setCart(savedCart)
-      })
-      }else{
-        const savedDataString = localStorage.getItem("my-cart") || "{}"
-        const savedData = JSON.parse(savedDataString)
-        quantityMapToCart(savedData)
-        
-      }
-    }, [isLoggedIn])
+    useEffect(function() {
     
-
-    function quantityMapToCart (quantityMap) {
-      getProductsByIds(Object.keys(quantityMap)).then((products) => {
-        const savedCart = products.map((p) => ({ 
-          product: p, 
-          quantity: quantityMap[p.id], 
-          // subTot: p.price * savedData[p.id]
-        }));
+    if(isLoggedIn){
+      getCart().then(function(savedCart){
         setCart(savedCart)
       })
-    }
-
-    function addToCart(productId, count){
-      const quantityMap = cart.reduce(
-        (m, cartItem) => ({...m, [cartItem.product.id]: cartItem.quantity}),
-        {}
-      );
 
       
-      const oldCount = quantityMap[productId] || 0
-
-      const newCart = {...quantityMap, [productId]: oldCount + count};
-      updateCart(newCart);
+    }else{
+      const savedDataString = localStorage.getItem("my-cart") || "{}";
+      const savedData = JSON.parse(savedDataString);
+      quantityMapToCart(savedData);
     }
-  
-    function updateCart(quantityMap){
+    
 
-      if(isLoggedIn){
-        saveCart(quantityMap).then(function(response){
-          // setCart(response)
+  }, [isLoggedIn])
+
+  function quantityMapToCart(quantityMap){
+    getProductsByIds(Object.keys(quantityMap)).then(function(products){
+      const savedCart= products.map((p) => ({
+          product: p,
+          quantity: quantityMap[p.id]
+        }))
+        setCart(savedCart)
+    })
+
+  }
+
+    function addToCart (productId, count) {
+        const oldCount = cart[productId] || 0;
+        const newCart = {...cart, [productId]: oldCount + count};
+        updateCart(newCart);
+    }
+
+    function updateCart (quantityMap) {
+      // setCart(newCart);
+
+        if(isLoggedIn){
+          saveCart(quantityMap).then(function(response){
+            // setCart(response.data)
+            quantityMapToCart(quantityMap)
+          })
           
-        quantityMapToCart(quantityMap)
-        })
-      }else{
-        const cartString = JSON.stringify(quantityMap)
-        localStorage.setItem("my-cart", cartString)
-        
-        quantityMapToCart(quantityMap)
-      }
+        }else{
+          const cartString = JSON.stringify(quantityMap);
+          localStorage.setItem("my-cart", cartString);
+          quantityMapToCart(quantityMap);
+        }
     }
-  
-    const cartCount = Object.keys(cart).reduce(function (previous, current){
-      return previous + current.quantity;
-    }, 0)
+
+    const cartCount = cart.reduce(function(previous, current){
+        return previous + current.quantity;
+    }, 0);
 
 
   return (

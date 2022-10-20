@@ -23,27 +23,11 @@ npm i create-context
 
 change =>
 App.jsx
-Api.js 
-product.jsx 
-prodDetail.jsx
-cartListpage.jsx
-Cartrow.jsx
-product.jsx
-productListPage.jsx
-index.html
-Button .jsx
-tailwindConfig.js
-Nav.jsx
-Nav.css
-Footer.jsx
-LoginRoute.jsx
-CartProvider.jsx in Providers folder
-Context.jsx
-withProvider.jsx
-CartList.jsx
+Signup.jsx
+ProdDetail.jsx
 Login.jsx
-
-
-npm i lodash
-
-npm run dev 
+CartProvider.jsx
+CartRow.jsx
+CartList.jsx 
+WithProvider.jsx 
+UserProvider.jsx 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { UserContext } from "../Contexts";
+import Loading from "../Loading";
 
 function UserProvider({ children }) {
   const [user, setUser] = useState();
@@ -30,7 +31,7 @@ function UserProvider({ children }) {
   }, []);
 
   if (loadingUser) {
-    return <div>Loading...</div>;
+    return <Loading /> ;
   }
 
   return (

@@ -21,9 +21,10 @@ function Nav({user, cartCount}) {
       <div className='flex space-x-4 items-center'>
         
         <div className='md:flex grid items-center space-x-2 md:mr-10 mr-4'>
-          { user && <h1 className='text-red-500 font-mono md:text-xl text-base flex'>Welcome<span className='md:flex hidden md:ml-2 text-sky-500'> {user.full_name} 🙂</span></h1> || <h1 className='text-red-400 font-mono text-xl animate-pulse'>Hello..!</h1>}
+          { user && <h1 className='text-red-500 font-mono md:text-xl text-base flex'>Welcome<span className='md:flex hidden md:ml-2 text-sky-500'> {user.full_name} 🙂</span></h1> || <h1 className='text-red-700 font-mono text-xl animate-pulse'>Hello..!</h1>}
           <div className="dropdown ">
-            <button className="dropbtn"><CgChevronDown className="text-red-400"/></button>
+            { user && <button className="dropbtn"><CgChevronDown className="text-red-400"/></button> || 
+            <button className="dropbtn"><CgChevronDown className="text-red-700 animate-pulse"/></button>}
             <div className="dropdown-content">
               { !user && <div>
                 <Link className='btns' to="/log-in">Log-In</Link>

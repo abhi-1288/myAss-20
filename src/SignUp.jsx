@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import * as Yup from 'yup'
 import { withFormik } from 'formik';
 import axios from 'axios';
@@ -7,33 +7,37 @@ import WithUser from './WithUser';
 import WithAlert from './WithAlert';
 
     function signupApi (values, ...bag){
-        // console.log(values.email, values.password, values.full_name) 
+
+        // console.log(values.email, values.password, values.fullName) 
         axios.post("https://myeasykart.codeyogi.io/signup",{
             email: values.email,
             password: values.password,
-            full_name: values.full_name
+            fullName: values.fullName
         })
         .then((response)=>{
-            console.log(response.data, "response")
-            localStorage.setItem('token', response.data.token)
-            bag.props.setUser(response.data.user)
+            const {user, token} = response.data
+            localStorage.setItem('token', token)
+            bag.props.setUser(user)
+            bag.props.setAlert({type:"success", message:'Account Created Successfully, Please Log-In'})
+            return <Navigate to="/log-In" />
         })
-        .catch((err)=>{
-            console.log("err", err)
+        .catch(()=>{
+            bag.props.setAlert({type:"error", message:'Invalid Email or Password or Username'})
         })
+
     }
     
 
     const schema = Yup.object().shape({
         email: Yup.string().email().required(),
         password: Yup.string().min(8).required(),
-        full_name: Yup.string().min(4).required()
+        fullName: Yup.string().min(4).required()
     })
 
         const initialValues = {
             email: "",
             password: "",
-            full_name: "",
+            fullName: "",
         }
 
 export function SignUp({
@@ -44,7 +48,6 @@ export function SignUp({
     handleBlur, 
     touched, 
     isValid,
-    setUser
     }){
 
 
@@ -56,15 +59,15 @@ export function SignUp({
             <div className='md:flex justify-center mb-4'>
                 <form onSubmit={handleSubmit} className='md:w-3/4 flex flex-col justify-center text-center border-2 border-red-400 rounded-md m-4 items-center'>
                     <h1 className='text-4xl font-Shadows font-black '>Full Name</h1>
-                    <input onBlur={handleBlur} name='full_name' value={values.full_name} onChange={handleChange} type='text' autoComplete="full_name" required className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='full_name' />
+                    <input onBlur={handleBlur} name='fullName' value={values.fullName} onChange={handleChange} type='text' autoComplete="fullName" required className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl text-black' placeholder='fullName' />
 
                     <h1 className='text-4xl font-Shadows font-black '>Email</h1>
-                    <input onBlur={handleBlur} name='email' value={values.email} onChange={handleChange} id='email' autoComplete="email" required type="email" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='Email' />
+                    <input onBlur={handleBlur} name='email' value={values.email} onChange={handleChange} id='email' autoComplete="email" required type="email" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl text-black' placeholder='Email' />
 
                     {touched.email && errors.email && <div className='text-red-500 rounded font-Shadows text-2xl p-2' >{errors.email}</div> }
 
                     <h1 className='text-4xl font-Shadows font-black '>Password</h1>
-                    <input onBlur={handleBlur} name='password' value={values.password} onChange={handleChange} id='password' autoComplete='current-password'  type="password" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl' placeholder='password' />
+                    <input onBlur={handleBlur} name='password' value={values.password} onChange={handleChange} id='password' autoComplete='current-password'  type="password" className='border-2 border-red-400 rounded m-2 font-Qwitcher text-3xl text-black' placeholder='password' />
                     
                     {touched.password && errors.password &&( <div className='text-red-500 rounded font-Shadows text-2xl p-2' >{errors.password}</div> )}
 

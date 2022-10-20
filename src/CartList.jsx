@@ -3,37 +3,34 @@ import Button from "./Button";
 import CartRow from "./CartRow";
 import { WithCart } from "./WithProvider";
 
-function CartList({ cart, updateCart }){
-    const [quantityMap, setQuantityMap] = useState();
+function CartList({ cart,  updateCart }) {
 
-    const cartToQuantityMap = () =>
-      cart.reduce(
-        (m, cartItem) => ({ ...m, [cartItem.product.id]: cartItem.quantity }),
-        {}
-      );
   
-    useEffect(
-      function () {
-        setQuantityMap(cartToQuantityMap());
-      },
-      [cart]
-    );
-  
-    function handleQuantityChange(productId, newValue) {
-      const newQuantityMap = { ...quantityMap, [productId]: newValue };
+  const [quantityMap, setQuantityMap] = useState({});
+
+
+  const cartToQuantityMap = () => cart.reduce((m, cartItem) => ({...m, [cartItem.product.id]: cartItem.quantity}), {});
+
+  useEffect(function () {
+    setQuantityMap(cartToQuantityMap);
+  }, [cart]);
+
+    function handleQuantityChange(productId, newQuantity) {
+      const newQuantityMap = {...quantityMap, [productId]: newQuantity};
       setQuantityMap(newQuantityMap);
-    }
 
-    const handleUpdateCart = () => {
-        updateCart(quantityMap)
-    };
+    }
 
     function prodDelete(productId){
         console.log("item removed")
-        const newQuantityMap = cartToQuantityMap()
-        delete newQuantityMap [productId]
+        const newQuantityMap = cartToQuantityMap();
+        delete newQuantityMap[productId];
         updateCart(newQuantityMap)
-        // setLoading(true)
+
+    }
+
+    function handleUpdateCart(){
+        updateCart(quantityMap)
     }
 
     return(
@@ -47,7 +44,7 @@ function CartList({ cart, updateCart }){
                 <CartRow
                     key={cartItem.product.id}
                     product={cartItem.product}
-                    quantity={quantityMap[cartItem.product.id] || cartItem.quantity}
+                    quantity={quantityMap[cartItem.product.id]}
                     onQuantityChange={handleQuantityChange}
                     onRemove={prodDelete}
                 />
@@ -68,4 +65,5 @@ function CartList({ cart, updateCart }){
     )
 }
 
+// export default CartList;
 export default WithCart(CartList);

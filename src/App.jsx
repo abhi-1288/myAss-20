@@ -42,7 +42,7 @@ function App() {
                 <Route path="*" element={<Err404 />} />
                 <Route path="/Cart" element={<CartListpage/>} />
                 <Route path="log-In" element={<AuthRoute> <LogIn /> </AuthRoute>} />
-                <Route path="sign-Up" element={<SignUp />} />
+                <Route path="sign-Up" element={ <AuthRoute> <SignUp /> </AuthRoute>} />
                 <Route path="forgotpswd" element={<ForgotPswd/>} />
                 <Route path="/accounts" element={<Accounts />} />
                 {/* <Route path="/test" element={<Test/>} /> */}
@@ -58,8 +58,3 @@ function App() {
   )
 }
 export default App;
-
-
-
-
-

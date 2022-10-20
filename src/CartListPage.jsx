@@ -1,12 +1,12 @@
 import React from "react";
 import CartList from "./CartList";
 
-function CartListPage(){
+function CartListPage() {
 
 
   
   return (
-    <div className="cart-list-page">
+    <div>
       <CartList />
     </div>
   )
