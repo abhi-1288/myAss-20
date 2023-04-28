@@ -38,7 +38,7 @@ function CartList({ cart,  updateCart }) {
         {/* hello */}
         <h2 className="text-red-400 text-5xl mx-2 font-RalewayDot">my CART</h2>
         <div className="flex">
-            <div className="m-2 rounded-lg border-2 md:w-11/12 w-auto border-red-400 md:flex grid p-2">
+            <div className="m-2 rounded-lg border-2 md:w-11/12 w-auto border-red-400 flex flex-col p-2">
 
             {cart.map((cartItem) => (
                 <CartRow
